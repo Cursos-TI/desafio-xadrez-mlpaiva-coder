@@ -27,6 +27,33 @@
 // Inclua o uso de continue e break dentro dos loops.
 #include <stdio.h>
 
+void moverTorre(int casasT)
+{
+    if (casasT > 0)
+    {
+        printf("Direita\n");
+        moverTorre(casasT - 1);
+    }
+}
+
+void moverBispo(int casasB)
+{
+    if (casasB > 0)
+    {
+        printf("Cima\n");
+        printf("Esquerda\n");       
+        moverBispo(casasB - 1);
+    }
+}
+void moverRainha(int casasR)
+{
+    if (casasR > 0)
+    {
+        printf("Esquerda\n");
+        moverRainha(casasR - 1);
+    }
+}
+
 int main(){
     int casas, i;
     char peca;
@@ -43,14 +70,11 @@ int main(){
     {
     case 't':
     case 'T':
-        // Movimentando a Torre 5 casas para a direita
+        // Movimentando a Torre até 5 casas para a direita
         printf("Digite a quantidade de casas a serem movimentadas (entre 1 e 5):\n");
         scanf("%d", &casas);
         if (casas > 0 && casas <= 5){
-            for (i = 1; i <= casas; i++)
-            {
-                printf("Torre, Direita !\n");
-            }    
+            moverTorre(casas);
         }else
         {
             printf("Digite um valor valido entre 1 e 5.\n");
@@ -61,13 +85,9 @@ int main(){
         // Movimentando o Bispo 5 casas para cima e direita
         printf("Digite a quantidade de casas a serem movimentadas (entre 1 e 5):\n");
         scanf("%d", &casas);
-        if (casas > 0 && casas <= 5){
-            i = 1;
-            while (i <= casas)
-            {
-                printf("Bispo, Cima e Direita !\n");
-                i++;
-            }               
+        if (casas > 0 && casas <= 5)
+        {
+            moverBispo(casas);     
         }else
         {
             printf("Digite um valor valido entre 1 e 5.\n");
@@ -75,16 +95,12 @@ int main(){
         break;
     case 'r':
     case 'R':
-        //Movimentando a Rainha 8 Casas para qualquer direção
+        //Movimentando a Rainha até 8 Casas para a esquerda.
         printf("Digite a quantidade de casas a serem movimentadas (entre 1 e 8):\n");
         scanf("%d", &casas);
-        if (casas > 0 && casas <= 8){
-            i = 1;
-            do
-            {
-                printf("Rainha, Qualquer direcao !\n");
-                i++; 
-            } while (i <= casas);             
+        if (casas > 0 && casas <= 8)
+        {
+           moverRainha(casas);             
         }else
         {
             printf("Digite um valor valido entre 1 e 5.\n");
@@ -92,17 +108,12 @@ int main(){
         break;
     case 'c':
     case 'C':
-        //Movimentando o Cavalo 2 Casas para baixo e 1 para a esquerda
-        for (int i = 1; i < 2; i++)
+        //Movimentando o Cavalo 2 Casas para cima e 1 para a direita
+        for (int i = 1, j = 3; i <= j; i++, j--)
         {
-            int j = 1;
-            while (j <= 2)
-            {
-                printf("Cavalo, Baixo.\n");
-                j++;
-            }
-            printf("Cavalo, Esquerda.\n");
+            printf("Cima\n");
         }
+        printf("Direita\n");
         break;
     default:
         // Entrada de dado errada
